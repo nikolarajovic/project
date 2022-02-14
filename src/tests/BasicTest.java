@@ -6,6 +6,7 @@ import org.testng.asserts.SoftAssert;
 import pages.BasicPage;
 import pages.LocationPopupPage;
 import pages.LoginPage;
+import pages.NotificationSystemPage;
 
 import org.testng.annotations.BeforeMethod;
 
@@ -23,9 +24,10 @@ public class BasicTest {
 	private WebDriverWait wait;
 	private LocationPopupPage locationPopupPage;
 	private LoginPage loginPage;
-	
-  @BeforeMethod
-  public void beforeMethod() {
+	private NotificationSystemPage notificationSystemPage;
+
+	@BeforeMethod
+	public void beforeMethod() {
 		System.setProperty("webdriver.chrome.driver", "driver-lib\\chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
@@ -34,22 +36,24 @@ public class BasicTest {
 		driver.navigate().to("http://demo.yo-meals.com/");
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		SoftAssert softAssertion = new SoftAssert();
-		
+
 		locationPopupPage = new LocationPopupPage(driver, wait);
 		loginPage = new LoginPage(driver, wait);
-  }
+		notificationSystemPage = new NotificationSystemPage(driver, wait);
+	}
 
-  @Test
-  public void function() throws InterruptedException {
-	  
-	  locationPopupPage.chooseLocation("Beverwyck - Albany");
-	  loginPage.login("customer@dummyid.com", "12345678a");
-	  
-  }
-  
-  @AfterMethod
-  public void afterMethod() {
-//	  driver.quit();
-  }
+	@Test
+	public void function() throws InterruptedException {
+
+		locationPopupPage.chooseLocation("Beverwyck - Albany");
+		loginPage.login("customer@dummyid.com", "12345678a");
+		notificationSystemPage.waitForMessageToDisappear();
+
+	}
+
+	@AfterMethod
+	public void afterMethod() {
+		driver.quit();
+	}
 
 }

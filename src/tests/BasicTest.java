@@ -5,6 +5,7 @@ import org.testng.asserts.SoftAssert;
 
 import pages.BasicPage;
 import pages.LocationPopupPage;
+import pages.LoginPage;
 
 import org.testng.annotations.BeforeMethod;
 
@@ -21,6 +22,7 @@ public class BasicTest {
 	private WebDriver driver;
 	private WebDriverWait wait;
 	private LocationPopupPage locationPopupPage;
+	private LoginPage loginPage;
 	
   @BeforeMethod
   public void beforeMethod() {
@@ -34,12 +36,14 @@ public class BasicTest {
 		SoftAssert softAssertion = new SoftAssert();
 		
 		locationPopupPage = new LocationPopupPage(driver, wait);
+		loginPage = new LoginPage(driver, wait);
   }
 
   @Test
   public void function() throws InterruptedException {
 	  
 	  locationPopupPage.chooseLocation("Beverwyck - Albany");
+	  loginPage.login("customer@dummyid.com", "12345678a");
 	  
   }
   

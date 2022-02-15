@@ -7,6 +7,7 @@ import pages.AuthPage;
 import pages.BasicPage;
 import pages.LocationPopupPage;
 import pages.LoginPage;
+import pages.MealPage;
 import pages.NotificationSystemPage;
 import pages.ProfilePage;
 import sun.net.www.protocol.http.AuthCacheImpl;
@@ -30,6 +31,7 @@ public class BasicTest {
 	private NotificationSystemPage notificationSystemPage;
 	private ProfilePage profilePage;
 	private AuthPage authPage;
+	private MealPage mealPage;
 
 	@BeforeMethod
 	public void beforeMethod() {
@@ -47,6 +49,7 @@ public class BasicTest {
 		notificationSystemPage = new NotificationSystemPage(driver, wait);
 		profilePage = new ProfilePage(driver, wait);
 		authPage = new AuthPage(driver, wait);
+		mealPage = new MealPage(driver, wait);
 	}
 
 	@Test
@@ -55,12 +58,14 @@ public class BasicTest {
 		locationPopupPage.chooseLocation("Beverwyck - Albany");
 		loginPage.login("customer@dummyid.com", "12345678a");
 		notificationSystemPage.waitForMessageToDisappear();
-		profilePage.goToProfilePage();
-		profilePage.uploadPhoto("img/profilePhoto.jpeg");
-		profilePage.removePhoto();
-		profilePage.personalInformationInput("Jackson", "Roland", "StreetInUK10", "066666666", "18000",
-				"United Kingdom", "Aberdeen", "Swadlincote");
-		authPage.logOut();
+//		profilePage.goToProfilePage();
+//		profilePage.uploadPhoto("img/profilePhoto.jpeg");
+//		profilePage.removePhoto();
+//		profilePage.personalInformationInput("Jackson", "Roland", "StreetInUK10", "066666666", "18000",
+//				"United Kingdom", "Aberdeen", "Swadlincote");
+//		authPage.logOut();
+//		mealPage.addToFavourite();
+		mealPage.addAproductToTheCart("3");
 
 	}
 

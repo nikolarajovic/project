@@ -11,6 +11,7 @@ import pages.LoginPage;
 import pages.MealPage;
 import pages.NotificationSystemPage;
 import pages.ProfilePage;
+import pages.SearchResultPage;
 import sun.net.www.protocol.http.AuthCacheImpl;
 
 import org.testng.annotations.BeforeMethod;
@@ -34,6 +35,7 @@ public class BasicTest {
 	private AuthPage authPage;
 	private MealPage mealPage;
 	private CartSummaryPage cartSummaryPage;
+	private SearchResultPage searchResultPage;
 
 	@BeforeMethod
 	public void beforeMethod() {
@@ -53,6 +55,7 @@ public class BasicTest {
 		authPage = new AuthPage(driver, wait);
 		mealPage = new MealPage(driver, wait);
 		cartSummaryPage = new CartSummaryPage(driver, wait);
+		searchResultPage = new SearchResultPage(driver, wait);
 	}
 
 	@Test
@@ -68,8 +71,9 @@ public class BasicTest {
 //				"United Kingdom", "Aberdeen", "Swadlincote");
 //		authPage.logOut();
 //		mealPage.addToFavourite();
-		mealPage.addProductToTheCart("3");
-		cartSummaryPage.clearAll();
+//		mealPage.addProductToTheCart("3");
+//		cartSummaryPage.clearAll();
+		searchResultPage.searchResultsNames();
 
 	}
 

@@ -5,6 +5,7 @@ import org.testng.asserts.SoftAssert;
 
 import pages.AuthPage;
 import pages.BasicPage;
+import pages.CartSummaryPage;
 import pages.LocationPopupPage;
 import pages.LoginPage;
 import pages.MealPage;
@@ -32,6 +33,7 @@ public class BasicTest {
 	private ProfilePage profilePage;
 	private AuthPage authPage;
 	private MealPage mealPage;
+	private CartSummaryPage cartSummaryPage;
 
 	@BeforeMethod
 	public void beforeMethod() {
@@ -50,6 +52,7 @@ public class BasicTest {
 		profilePage = new ProfilePage(driver, wait);
 		authPage = new AuthPage(driver, wait);
 		mealPage = new MealPage(driver, wait);
+		cartSummaryPage = new CartSummaryPage(driver, wait);
 	}
 
 	@Test
@@ -65,7 +68,8 @@ public class BasicTest {
 //				"United Kingdom", "Aberdeen", "Swadlincote");
 //		authPage.logOut();
 //		mealPage.addToFavourite();
-		mealPage.addAproductToTheCart("3");
+		mealPage.addProductToTheCart("3");
+		cartSummaryPage.clearAll();
 
 	}
 

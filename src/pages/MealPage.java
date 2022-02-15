@@ -37,7 +37,7 @@ public class MealPage extends BasicPage {
 		return driver.findElement(By.id("item_60"));
 	}
 
-	public void addAproductToTheCart(String quantity) throws InterruptedException {
+	public void addProductToTheCart(String quantity) throws InterruptedException {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		getMealsButton().click();
 		js.executeScript("arguments[0].click();", getProduct());

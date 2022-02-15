@@ -7,6 +7,7 @@ import pages.BasicPage;
 import pages.LocationPopupPage;
 import pages.LoginPage;
 import pages.NotificationSystemPage;
+import pages.ProfilePage;
 
 import org.testng.annotations.BeforeMethod;
 
@@ -25,6 +26,7 @@ public class BasicTest {
 	private LocationPopupPage locationPopupPage;
 	private LoginPage loginPage;
 	private NotificationSystemPage notificationSystemPage;
+	private ProfilePage profilePage;
 
 	@BeforeMethod
 	public void beforeMethod() {
@@ -40,6 +42,7 @@ public class BasicTest {
 		locationPopupPage = new LocationPopupPage(driver, wait);
 		loginPage = new LoginPage(driver, wait);
 		notificationSystemPage = new NotificationSystemPage(driver, wait);
+		profilePage = new ProfilePage(driver, wait);
 	}
 
 	@Test
@@ -48,12 +51,17 @@ public class BasicTest {
 		locationPopupPage.chooseLocation("Beverwyck - Albany");
 		loginPage.login("customer@dummyid.com", "12345678a");
 		notificationSystemPage.waitForMessageToDisappear();
+		profilePage.goToProfilePage();
+		profilePage.uploadPhoto("img/profilePhoto.jpeg");
+		profilePage.removePhoto();
+		profilePage.personalInformationInput("Jackson", "Roland", "StreetInUK10", "066666666", "18000",
+				"United Kingdom", "Aberdeen", "Swadlincote");
 
 	}
 
 	@AfterMethod
 	public void afterMethod() {
-		driver.quit();
+//		driver.quit();
 	}
 
 }

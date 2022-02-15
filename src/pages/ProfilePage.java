@@ -26,7 +26,7 @@ public class ProfilePage extends BasicPage {
 		return driver.findElement(By.xpath("//*[contains(@class, 'remove')]"));
 	}
 
-	public WebElement getNameButton() {
+	public WebElement getAuthButton() {
 		return driver.findElement(By.xpath("//*[contains(@class, 'after-arrow user-trigger-js user-trigger-active')]"));
 	}
 

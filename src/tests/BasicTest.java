@@ -3,11 +3,13 @@ package tests;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import pages.AuthPage;
 import pages.BasicPage;
 import pages.LocationPopupPage;
 import pages.LoginPage;
 import pages.NotificationSystemPage;
 import pages.ProfilePage;
+import sun.net.www.protocol.http.AuthCacheImpl;
 
 import org.testng.annotations.BeforeMethod;
 
@@ -27,6 +29,7 @@ public class BasicTest {
 	private LoginPage loginPage;
 	private NotificationSystemPage notificationSystemPage;
 	private ProfilePage profilePage;
+	private AuthPage authPage;
 
 	@BeforeMethod
 	public void beforeMethod() {
@@ -43,6 +46,7 @@ public class BasicTest {
 		loginPage = new LoginPage(driver, wait);
 		notificationSystemPage = new NotificationSystemPage(driver, wait);
 		profilePage = new ProfilePage(driver, wait);
+		authPage = new AuthPage(driver, wait);
 	}
 
 	@Test
@@ -56,6 +60,7 @@ public class BasicTest {
 		profilePage.removePhoto();
 		profilePage.personalInformationInput("Jackson", "Roland", "StreetInUK10", "066666666", "18000",
 				"United Kingdom", "Aberdeen", "Swadlincote");
+		authPage.logOut();
 
 	}
 

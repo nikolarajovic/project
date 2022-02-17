@@ -38,7 +38,6 @@ public class LoginPage extends BasicPage {
 
 	public void login(String username, String password) throws InterruptedException {
 		Thread.sleep(1500);
-		getLoginButton().click();
 		getUsernameInput().clear();
 		getPasswordInput().clear();
 		getUsernameInput().sendKeys(username);

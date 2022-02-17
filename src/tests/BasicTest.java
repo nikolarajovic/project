@@ -37,6 +37,7 @@ public abstract class BasicTest {
 	protected WebDriver driver;
 	protected WebDriverWait wait;
 	protected JavascriptExecutor js;
+	protected SoftAssert softAssertion;
 	protected LocationPopupPage locationPopupPage;
 	protected LoginPage loginPage;
 	protected NotificationSystemPage notificationSystemPage;
@@ -45,6 +46,9 @@ public abstract class BasicTest {
 	protected MealPage mealPage;
 	protected CartSummaryPage cartSummaryPage;
 	protected SearchResultPage searchResultPage;
+	String baseUrl = "http://demo.yo-meals.com/";
+	String email = "customer@dummyid.com";
+	String password = "12345678a";
 
 	@BeforeMethod
 	public void beforeMethod() {
@@ -53,9 +57,9 @@ public abstract class BasicTest {
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-		driver.navigate().to("http://demo.yo-meals.com/");
+		driver.navigate().to(baseUrl);
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		SoftAssert softAssertion = new SoftAssert();
+		softAssertion = new SoftAssert();
 
 		locationPopupPage = new LocationPopupPage(driver, wait, js);
 		loginPage = new LoginPage(driver, wait, js);
@@ -67,31 +71,6 @@ public abstract class BasicTest {
 		searchResultPage = new SearchResultPage(driver, wait, js);
 	}
 
-	@Test
-	public void function() throws InterruptedException {
-
-//		locationPopupPage.chooseLocation("Beverwyck - Albany");
-//		loginPage.login("customer@dummyid.com", "12345678a");
-//		notificationSystemPage.waitForMessageToDisappear();
-//		profilePage.goToProfilePage();
-//		profilePage.uploadPhoto("img/profilePhoto.jpeg");
-//		profilePage.removePhoto();
-//		profilePage.personalInformationInput("Jackson", "Roland", "StreetInUK10", "066666666", "18000",
-//				"United Kingdom", "Aberdeen", "Swadlincote");
-//		authPage.logOut();
-//		mealPage.addToFavourite();
-//		mealPage.addProductToTheCart("3");
-//		cartSummaryPage.clearAll();
-//		searchResultPage.searchResultsNames();
-		
-//		[ERROR] Unexpected logout message
-//		rešenje sa listom ili try/catch-om
-		
-		String email = "customer@dummyid.com";
-		String password = "12345678a";
-
-	}
-
 	@AfterMethod
 	public void afterMethod() throws IOException {
 //		Date date = new Date();
@@ -100,7 +79,7 @@ public abstract class BasicTest {
 //		TakesScreenshot screenshot = ((TakesScreenshot) driver);
 //		File sourceFile = screenshot.getScreenshotAs(OutputType.FILE);
 //		FileUtils.copyFile(sourceFile, new File("./screenshots/" + formattedDate + ".png"));
-		
+
 		driver.quit();
 	}
 

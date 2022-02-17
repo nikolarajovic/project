@@ -31,23 +31,51 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 
-public abstract class ProfileTest extends BasicTest {
+public class ProfileTest extends BasicTest {
 
-	@BeforeMethod
-	public void beforeMethod() {
+	@Test (priority = 1)	
+	public void editProfileTest() throws InterruptedException {
+		driver.navigate().to(super.baseUrl + "/guest-user/login-form");
+		locationPopupPage.chooseLocation("Beverwyck - Albany");
+		loginPage.login(super.email, super.password);
+		softAssertion.assertTrue(notificationSystemPage.getNotificationLoginMessage().contains("Successfull"),
+				"[ERROR] Login message did not appear.");
+
+		driver.navigate().to(super.baseUrl + "/member/profile");
+		profilePage.personalInformationInput("Jackson", "Roland", "StreetInUK10", "066666666", "18000",
+				"United Kingdom", "Aberdeen", "Swadlincote");
+		softAssertion.assertTrue(notificationSystemPage.getNotificationSetupMessage().contains("Setup"),
+				"[ERROR] Setup message did not appear.");
+		
+		notificationSystemPage.waitForMessageToDisappear();
+		authPage.logOut();
+		softAssertion.assertTrue(notificationSystemPage.getNotificationLogoutMessage().contains("Logout Successfull!"),
+				"[ERROR] Logout message did not appear.");
 
 	}
 
-	@Test
-	public void ProfileTest() throws InterruptedException {
+	@Test (priority = 2)	
+	public void changeProfileImageTest() throws InterruptedException {
+		driver.navigate().to(super.baseUrl + "/guest-user/login-form");
+		locationPopupPage.chooseLocation("Beverwyck - Albany");
+		loginPage.login(super.email, super.password);
+		softAssertion.assertTrue(notificationSystemPage.getNotificationLoginMessage().contains("Successfull"),
+				"[ERROR] Login message did not appear.");
 
-		String email = "customer@dummyid.com";
-		String password = "12345678a";
+		driver.navigate().to(super.baseUrl + "/member/profile");
+		profilePage.uploadPhoto("img/profilePhoto.jpeg");
+		softAssertion.assertTrue(
+				notificationSystemPage.getNotificationImageMessage().contains("Profile Image Uploaded Successfully"),
+				"[ERROR] Image upload message did not appear.");
 
-	}
+		notificationSystemPage.waitForMessageToDisappear();
+		profilePage.removePhoto();
+		softAssertion.assertTrue(notificationSystemPage.getNotificationRemoveImageMessage()
+				.contains("Profile Image Uploaded Successfully"), "[ERROR] Image remove message did not appear.");
 
-	@AfterMethod
-	public void afterMethod() throws IOException {
+		authPage.logOut();
+		softAssertion.assertTrue(notificationSystemPage.getNotificationLogoutMessage().contains("Logout Successfull!"),
+				"[ERROR] Logout message did not appear.");
 
 	}
 

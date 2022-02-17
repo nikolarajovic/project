@@ -114,6 +114,7 @@ public class ProfilePage extends BasicPage {
 		getPhoneNumberInput().sendKeys(phoneNumber);
 		getZipCodeInput().sendKeys(zipCode);
 		selectCountry(country);
+		Thread.sleep(1500);
 		selectState(state);
 		selectCity(city);
 		js.executeScript("arguments[0].click();", getPersonalInformationSaveButton());

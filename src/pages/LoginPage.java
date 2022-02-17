@@ -12,8 +12,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage extends BasicPage {
 
-	public LoginPage(WebDriver driver, WebDriverWait wait) {
-		super(driver, wait);
+	public LoginPage(WebDriver driver, WebDriverWait wait, JavascriptExecutor js) {
+		super(driver, wait, js);
 	}
 
 	public WebElement getLoginButton() {

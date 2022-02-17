@@ -12,8 +12,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class NotificationSystemPage extends BasicPage {
 
-	public NotificationSystemPage(WebDriver driver, WebDriverWait wait) {
-		super(driver, wait);
+	public NotificationSystemPage(WebDriver driver, WebDriverWait wait, JavascriptExecutor js) {
+		super(driver, wait, js);
 	}
 
 	public WebElement getLoginButton() {

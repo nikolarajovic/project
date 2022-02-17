@@ -12,8 +12,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CartSummaryPage extends BasicPage {
 
-	public CartSummaryPage(WebDriver driver, WebDriverWait wait) {
-		super(driver, wait);
+	public CartSummaryPage(WebDriver driver, WebDriverWait wait, JavascriptExecutor js) {
+		super(driver, wait, js);
 	}
 
 	public WebElement getClearAllButton() {

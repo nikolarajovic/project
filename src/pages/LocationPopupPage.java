@@ -8,8 +8,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LocationPopupPage extends BasicPage{
 
-	public LocationPopupPage(WebDriver driver, WebDriverWait wait) {
-		super(driver, wait);
+	public LocationPopupPage(WebDriver driver, WebDriverWait wait, JavascriptExecutor js) {
+		super(driver, wait, js);
 	}
 
 	public WebElement getLocationButton() {
@@ -41,7 +41,6 @@ public class LocationPopupPage extends BasicPage{
 	}
 	
 	public void chooseLocation(String locationName) throws InterruptedException {
-		JavascriptExecutor js = (JavascriptExecutor)driver;
 		getKeyword().click();
 		String value = getLocationItem(locationName).getAttribute("data-value");
 		js.executeScript("arguments[0].value=arguments[1];", getLocationInput(), value);

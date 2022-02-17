@@ -13,8 +13,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SearchResultPage extends BasicPage {
 
-	public SearchResultPage(WebDriver driver, WebDriverWait wait) {
-		super(driver, wait);
+	public SearchResultPage(WebDriver driver, WebDriverWait wait, JavascriptExecutor js) {
+		super(driver, wait, js);
 	}
 
 	public WebElement getMealsButton() {

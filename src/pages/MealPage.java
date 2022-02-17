@@ -12,8 +12,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MealPage extends BasicPage {
 
-	public MealPage(WebDriver driver, WebDriverWait wait) {
-		super(driver, wait);
+	public MealPage(WebDriver driver, WebDriverWait wait, JavascriptExecutor js) {
+		super(driver, wait, js);
 	}
 
 	public WebElement getMealsButton() {
@@ -38,7 +38,6 @@ public class MealPage extends BasicPage {
 	}
 
 	public void addProductToTheCart(String quantity) throws InterruptedException {
-		JavascriptExecutor js = (JavascriptExecutor) driver;
 		getMealsButton().click();
 		js.executeScript("arguments[0].click();", getProduct());
 		getQuantityInput().clear();
@@ -47,7 +46,6 @@ public class MealPage extends BasicPage {
 	}
 
 	public void addToFavourite() {
-		JavascriptExecutor js = (JavascriptExecutor) driver;
 		getMealsButton().click();
 		js.executeScript("arguments[0].click();", getFavouriteButton());
 	}

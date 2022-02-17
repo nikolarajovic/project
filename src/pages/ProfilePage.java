@@ -14,8 +14,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ProfilePage extends BasicPage {
 
-	public ProfilePage(WebDriver driver, WebDriverWait wait) {
-		super(driver, wait);
+	public ProfilePage(WebDriver driver, WebDriverWait wait, JavascriptExecutor js) {
+		super(driver, wait, js);
 	}
 
 	public WebElement getUploadPhotoButton() {
@@ -84,13 +84,11 @@ public class ProfilePage extends BasicPage {
 	}
 
 	public void goToProfilePage() {
-		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].click();", getMyAccountButton());
 		getProfileButton().click();
 	}
 
 	public void uploadPhoto(String pathToThePicture) throws InterruptedException {
-		JavascriptExecutor js = (JavascriptExecutor) driver;
 		File profilePhoto = new File(pathToThePicture);
 		js.executeScript("arguments[0].click();", getUploadPhotoButton());
 		WebElement profilePhotoUpload = driver.findElement(By.name("file"));
@@ -99,13 +97,11 @@ public class ProfilePage extends BasicPage {
 	}
 
 	public void removePhoto() {
-		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].click();", getRemovePhotoButton());
 	}
 
 	public void personalInformationInput(String firstName, String lastName, String adress, String phoneNumber,
 			String zipCode, String country, String state, String city) throws InterruptedException {
-		JavascriptExecutor js = (JavascriptExecutor) driver;
 		scrollIntoViewFirstName();
 		getFirstNameInput().clear();
 		getLastNameInput().clear();

@@ -12,8 +12,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class AuthPage extends BasicPage {
 
-	public AuthPage(WebDriver driver, WebDriverWait wait) {
-		super(driver, wait);
+	public AuthPage(WebDriver driver, WebDriverWait wait, JavascriptExecutor js) {
+		super(driver, wait, js);
 	}
 
 	public WebElement getAuthButton() {
@@ -29,7 +29,6 @@ public class AuthPage extends BasicPage {
 	}
 
 	public void logOut() {
-		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].click();", getLogOutButton());
 	}
 

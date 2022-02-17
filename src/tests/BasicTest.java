@@ -24,6 +24,7 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -35,6 +36,7 @@ public abstract class BasicTest {
 
 	protected WebDriver driver;
 	protected WebDriverWait wait;
+	protected JavascriptExecutor js;
 	protected LocationPopupPage locationPopupPage;
 	protected LoginPage loginPage;
 	protected NotificationSystemPage notificationSystemPage;
@@ -55,14 +57,14 @@ public abstract class BasicTest {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		SoftAssert softAssertion = new SoftAssert();
 
-		locationPopupPage = new LocationPopupPage(driver, wait);
-		loginPage = new LoginPage(driver, wait);
-		notificationSystemPage = new NotificationSystemPage(driver, wait);
-		profilePage = new ProfilePage(driver, wait);
-		authPage = new AuthPage(driver, wait);
-		mealPage = new MealPage(driver, wait);
-		cartSummaryPage = new CartSummaryPage(driver, wait);
-		searchResultPage = new SearchResultPage(driver, wait);
+		locationPopupPage = new LocationPopupPage(driver, wait, js);
+		loginPage = new LoginPage(driver, wait, js);
+		notificationSystemPage = new NotificationSystemPage(driver, wait, js);
+		profilePage = new ProfilePage(driver, wait, js);
+		authPage = new AuthPage(driver, wait, js);
+		mealPage = new MealPage(driver, wait, js);
+		cartSummaryPage = new CartSummaryPage(driver, wait, js);
+		searchResultPage = new SearchResultPage(driver, wait, js);
 	}
 
 	@Test
@@ -71,7 +73,7 @@ public abstract class BasicTest {
 //		locationPopupPage.chooseLocation("Beverwyck - Albany");
 //		loginPage.login("customer@dummyid.com", "12345678a");
 //		notificationSystemPage.waitForMessageToDisappear();
-////		profilePage.goToProfilePage();
+//		profilePage.goToProfilePage();
 //		profilePage.uploadPhoto("img/profilePhoto.jpeg");
 //		profilePage.removePhoto();
 //		profilePage.personalInformationInput("Jackson", "Roland", "StreetInUK10", "066666666", "18000",
@@ -92,12 +94,12 @@ public abstract class BasicTest {
 
 	@AfterMethod
 	public void afterMethod() throws IOException {
-		Date date = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy-h-mm-ss a");
-		String formattedDate = sdf.format(date);
-		TakesScreenshot screenshot = ((TakesScreenshot) driver);
-		File sourceFile = screenshot.getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(sourceFile, new File("./screenshots/" + formattedDate + ".png"));
+//		Date date = new Date();
+//		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy-h-mm-ss a");
+//		String formattedDate = sdf.format(date);
+//		TakesScreenshot screenshot = ((TakesScreenshot) driver);
+//		File sourceFile = screenshot.getScreenshotAs(OutputType.FILE);
+//		FileUtils.copyFile(sourceFile, new File("./screenshots/" + formattedDate + ".png"));
 		
 		driver.quit();
 	}

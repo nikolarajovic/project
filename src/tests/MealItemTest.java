@@ -70,7 +70,7 @@ public class MealItemTest extends BasicTest {
 		mealPage.getFirstProduct();
 		mealPage.addToFavourite();
 		Assert.assertTrue(notificationSystemPage.getNotificationMessage().contains("added"),
-				"[ERROR] Added to cart message did not appear.");
+				"[ERROR] Added to favourite message did not appear.");
 	}
 
 	@Test(priority = 3)
@@ -81,8 +81,8 @@ public class MealItemTest extends BasicTest {
 		XSSFSheet sheet = wb.getSheet("Meal Search Results");
 		DataFormatter formatter = new DataFormatter();
 
-//		driver.navigate().to(baseUrl + "/meals");
-//		locationPopupPage.chooseLocation("City Center - Albany");
+		driver.navigate().to(baseUrl + "/meals");
+		locationPopupPage.chooseLocation("City Center - Albany");
 
 		for (int i = 1; i < 6; i++) {
 			String url = formatter.formatCellValue(sheet.getRow(i).getCell(1));
@@ -93,8 +93,11 @@ public class MealItemTest extends BasicTest {
 			softAssertion.assertTrue(notificationSystemPage.getNotificationMessage().contains("Added"),
 					"[ERROR] Added to cart message did not appear.");
 		}
-
 		softAssertion.assertAll();
+
+		cartSummaryPage.clearAll();
+		Assert.assertTrue(notificationSystemPage.getNotificationMessage().contains("removed"),
+				"[ERROR] Meals removed from the cart message did not appear.");
 
 	}
 

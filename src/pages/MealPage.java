@@ -4,6 +4,7 @@ import java.time.Duration;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -34,19 +35,22 @@ public class MealPage extends BasicPage {
 	}
 
 	public WebElement getFavouriteButton() {
-		return driver.findElement(By.id("item_60"));
+		return driver.findElement(By.className("favourite"));
+	}
+
+	public void getFirstProduct() {
+		getMealsButton().click();
+		js.executeScript("arguments[0].click();", getProduct());
 	}
 
 	public void addProductToTheCart(String quantity) throws InterruptedException {
-		getMealsButton().click();
-		js.executeScript("arguments[0].click();", getProduct());
 		getQuantityInput().clear();
-		getQuantityInput().sendKeys(quantity);
+		this.getQuantityInput().sendKeys(Keys.chord(Keys.CONTROL, "a"));
+		this.getQuantityInput().sendKeys(quantity);
 		getAddToCartButton().click();
 	}
 
 	public void addToFavourite() {
-		getMealsButton().click();
 		js.executeScript("arguments[0].click();", getFavouriteButton());
 	}
 

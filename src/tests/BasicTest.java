@@ -47,7 +47,7 @@ public abstract class BasicTest {
 	protected CartSummaryPage cartSummaryPage;
 	protected SearchResultPage searchResultPage;
 	String baseUrl = "http://demo.yo-meals.com/";
-	String email = "customer@dummyid.com";
+	String username = "customer@dummyid.com";
 	String password = "12345678a";
 
 	@BeforeMethod
@@ -80,7 +80,7 @@ public abstract class BasicTest {
 //		File sourceFile = screenshot.getScreenshotAs(OutputType.FILE);
 //		FileUtils.copyFile(sourceFile, new File("./screenshots/" + formattedDate + ".png"));
 
-		driver.quit();
+//		driver.quit();
 	}
 
 }

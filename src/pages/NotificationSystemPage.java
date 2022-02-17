@@ -20,30 +20,12 @@ public class NotificationSystemPage extends BasicPage {
 		return driver.findElement(By.xpath("//*[contains(@class, 'alert--success')]"));
 	}
 
-	public String getNotificationLoginMessage() {
+	public String getNotificationMessage() {
 		return driver.findElement(By.xpath("//*[contains(@class, 'alert--success')]")).getText();
 	}
 
-	public String getNotificationSetupMessage() {
-		return driver
-				.findElement(By.xpath(
-						"//*[contains(@class, 'system_message alert alert--positioned-top-full alert--success')]/div"))
-				.getText();
-	}
-
-	public String getNotificationLogoutMessage() {
-		return driver.findElement(By.xpath("//*[contains(@class, 'system_message alert alert--success')]"))
-				.getText();
-	}
-	
-	public String getNotificationImageMessage() {
-		return driver.findElement(By.xpath("//*[contains(@class, 'system_message alert alert--positioned-top-full alert--success')]//div"))
-				.getText();
-	}
-	
-	public String getNotificationRemoveImageMessage() {
-		return driver.findElement(By.xpath("//*[contains(@class, 'system_message alert alert--positioned-top-full alert--success')]//div"))
-				.getText();
+	public String getNotificationErrorMessage() {
+		return driver.findElement(By.xpath("//*[contains(@class, 'alert--danger')]")).getText();
 	}
 
 	public void waitForMessageToDisappear() throws InterruptedException {

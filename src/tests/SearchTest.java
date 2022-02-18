@@ -50,6 +50,22 @@ public class SearchTest extends BasicTest {
 		driver.navigate().to(super.baseUrl + "/meals");
 		locationPopupPage.chooseLocation("City Center - Albany");
 
+		for (int i = 1; i < 5; i++) {
+			String location = formatter.formatCellValue(sheet.getRow(1).getCell(0));
+			String url = formatter.formatCellValue(sheet.getRow(1).getCell(1));
+			String searchResultNumber = formatter.formatCellValue(sheet.getRow(1).getCell(2));
+			int searchResultNumberInt = Integer.parseInt(searchResultNumber);
+
+			driver.navigate().to(url);
+			locationPopupPage.clickLocationPopUp();
+			locationPopupPage.chooseLocation(location);
+
+			softAssertion.assertEquals(searchResultPage.searchResultsNumber(), searchResultNumberInt,
+					"[ERROR] Search result does not match with compared data.");
+		}
+
+		softAssertion.assertAll();
+
 	}
 
 }

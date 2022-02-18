@@ -75,22 +75,22 @@ public abstract class BasicTest {
 
 	@AfterMethod
 	public void afterMethod(ITestResult result) throws IOException {
-//		Date date = new Date();
-//		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy-h-mm-ssa");
-//		String formattedDate = sdf.format(date);
-//
-//		if (ITestResult.FAILURE == result.getStatus()) {
-//			try {
-//				TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
-//				File sourceFile = takesScreenshot.getScreenshotAs(OutputType.FILE);
-//				FileUtils.copyFile(sourceFile, new File("./screenshots/" + formattedDate + ".png"));
-//				System.out.println("Screenshot taken!");
-//			} catch (Exception e) {
-//				System.out.println("Exception while taking screenshot " + e.getMessage() + "!");
-//			}
-//		}
-//
-//		driver.quit();
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy-h-mm-ssa");
+		String formattedDate = sdf.format(date);
+
+		if (ITestResult.FAILURE == result.getStatus()) {
+			try {
+				TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
+				File sourceFile = takesScreenshot.getScreenshotAs(OutputType.FILE);
+				FileUtils.copyFile(sourceFile, new File("./screenshots/" + formattedDate + ".png"));
+				System.out.println("Screenshot taken!");
+			} catch (Exception e) {
+				System.out.println("Exception while taking screenshot " + e.getMessage() + "!");
+			}
+		}
+
+		driver.quit();
 
 	}
 

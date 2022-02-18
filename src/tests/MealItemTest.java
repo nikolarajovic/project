@@ -39,39 +39,39 @@ import org.testng.annotations.AfterMethod;
 
 public class MealItemTest extends BasicTest {
 
-//	@Test(priority = 1)
-//	public void addMealToCartTest() throws InterruptedException {
-//		locationPopupPage.getCloseButton().click();
-//		mealPage.getFirstProduct();
-//		mealPage.addProductToTheCart("3");
-//		Assert.assertTrue(notificationSystemPage.getNotificationErrorMessage().contains("Errors"),
-//				"[ERROR] Location error message did not appear.");
-//
-//		notificationSystemPage.waitForMessageToDisappear();
-//		locationPopupPage.clickLocationPopUp();
-//		locationPopupPage.chooseLocation("Beverwyck - Albany");
-//		driver.navigate().to(baseUrl);
-//		mealPage.getFirstProduct();
-//		mealPage.addProductToTheCart("3");
-//		Assert.assertTrue(notificationSystemPage.getNotificationMessage().contains("Added"),
-//				"[ERROR] Added to cart message did not appear.");
-//	}
+	@Test(priority = 1)
+	public void addMealToCartTest() throws InterruptedException {
+		locationPopupPage.getCloseButton().click();
+		mealPage.getFirstProduct();
+		mealPage.addProductToTheCart("3");
+		Assert.assertTrue(notificationSystemPage.getNotificationErrorMessage().contains("Errors"),
+				"[ERROR] Location error message did not appear.");
 
-//	@Test(priority = 2)
-//	public void addMealToFavouriteTest() throws InterruptedException {
-//		locationPopupPage.getCloseButton().click();
-//		mealPage.addToFavourite();
-//		Assert.assertTrue(notificationSystemPage.getNotificationErrorMessage().contains("Please"),
-//				"[ERROR] Login error message did not appear.");
-//
-//		loginPage.getLoginButton().click();
-//		loginPage.login(super.username, super.password);
-//		driver.navigate().to(baseUrl);
-//		mealPage.getFirstProduct();
-//		mealPage.addToFavourite();
-//		Assert.assertTrue(notificationSystemPage.getNotificationMessage().contains("added"),
-//				"[ERROR] Added to favourite message did not appear.");
-//	}
+		notificationSystemPage.waitForMessageToDisappear();
+		locationPopupPage.clickLocationPopUp();
+		locationPopupPage.chooseLocation("Beverwyck - Albany");
+		driver.navigate().to(baseUrl);
+		mealPage.getFirstProduct();
+		mealPage.addProductToTheCart("3");
+		Assert.assertTrue(notificationSystemPage.getNotificationMessage().contains("Added"),
+				"[ERROR] Added to cart message did not appear.");
+	}
+
+	@Test(priority = 2)
+	public void addMealToFavouriteTest() throws InterruptedException {
+		locationPopupPage.getCloseButton().click();
+		mealPage.addToFavourite();
+		Assert.assertTrue(notificationSystemPage.getNotificationErrorMessage().contains("Please"),
+				"[ERROR] Login error message did not appear.");
+
+		loginPage.getLoginButton().click();
+		loginPage.login(super.username, super.password);
+		driver.navigate().to(baseUrl);
+		mealPage.getFirstProduct();
+		mealPage.addToFavourite();
+		Assert.assertTrue(notificationSystemPage.getNotificationMessage().contains("added"),
+				"[ERROR] Added to favourite message did not appear.");
+	}
 
 	@Test(priority = 3)
 	public void clearCartTest() throws InterruptedException, IOException {

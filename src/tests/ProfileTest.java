@@ -71,9 +71,10 @@ public class ProfileTest extends BasicTest {
 		notificationSystemPage.waitForMessageToDisappear();
 		profilePage.removePhoto();
 		Assert.assertTrue(
-				notificationSystemPage.getNotificationMessage().contains("Profile Image Uploaded Successfully"),
+				notificationSystemPage.getNotificationMessage().contains("Deleted"),
 				"[ERROR] Image remove message did not appear.");
 
+		notificationSystemPage.waitForMessageToDisappear();
 		authPage.logOut();
 		Assert.assertTrue(notificationSystemPage.getNotificationMessage().contains("Logout Successfull!"),
 				"[ERROR] Logout message did not appear.");

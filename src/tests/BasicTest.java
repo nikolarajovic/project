@@ -22,6 +22,7 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.FileHandler;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.JavascriptExecutor;
@@ -30,6 +31,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 
 public abstract class BasicTest {
@@ -72,15 +74,24 @@ public abstract class BasicTest {
 	}
 
 	@AfterMethod
-	public void afterMethod() throws IOException {
+	public void afterMethod(ITestResult result) throws IOException {
 //		Date date = new Date();
-//		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy-h-mm-ss a");
+//		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy-h-mm-ssa");
 //		String formattedDate = sdf.format(date);
-//		TakesScreenshot screenshot = ((TakesScreenshot) driver);
-//		File sourceFile = screenshot.getScreenshotAs(OutputType.FILE);
-//		FileUtils.copyFile(sourceFile, new File("./screenshots/" + formattedDate + ".png"));
-
+//
+//		if (ITestResult.FAILURE == result.getStatus()) {
+//			try {
+//				TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
+//				File sourceFile = takesScreenshot.getScreenshotAs(OutputType.FILE);
+//				FileUtils.copyFile(sourceFile, new File("./screenshots/" + formattedDate + ".png"));
+//				System.out.println("Screenshot taken!");
+//			} catch (Exception e) {
+//				System.out.println("Exception while taking screenshot " + e.getMessage() + "!");
+//			}
+//		}
+//
 //		driver.quit();
+
 	}
 
 }

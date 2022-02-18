@@ -39,60 +39,59 @@ import org.testng.annotations.AfterMethod;
 
 public class MealItemTest extends BasicTest {
 
-	@Test(priority = 1)
-	public void addMealToCartTest() throws InterruptedException {
-		locationPopupPage.getCloseButton().click();
-		mealPage.getFirstProduct();
-		mealPage.addProductToTheCart("3");
-		Assert.assertTrue(notificationSystemPage.getNotificationErrorMessage().contains("Errors"),
-				"[ERROR] Location error message did not appear.");
+//	@Test(priority = 1)
+//	public void addMealToCartTest() throws InterruptedException {
+//		locationPopupPage.getCloseButton().click();
+//		mealPage.getFirstProduct();
+//		mealPage.addProductToTheCart("3");
+//		Assert.assertTrue(notificationSystemPage.getNotificationErrorMessage().contains("Errors"),
+//				"[ERROR] Location error message did not appear.");
+//
+//		notificationSystemPage.waitForMessageToDisappear();
+//		locationPopupPage.clickLocationPopUp();
+//		locationPopupPage.chooseLocation("Beverwyck - Albany");
+//		driver.navigate().to(baseUrl);
+//		mealPage.getFirstProduct();
+//		mealPage.addProductToTheCart("3");
+//		Assert.assertTrue(notificationSystemPage.getNotificationMessage().contains("Added"),
+//				"[ERROR] Added to cart message did not appear.");
+//	}
 
-		notificationSystemPage.waitForMessageToDisappear();
-		locationPopupPage.clickLocationPopUp();
-		locationPopupPage.chooseLocation("Beverwyck - Albany");
-		driver.navigate().to(baseUrl);
-		mealPage.getFirstProduct();
-		mealPage.addProductToTheCart("3");
-		Assert.assertTrue(notificationSystemPage.getNotificationMessage().contains("Added"),
-				"[ERROR] Added to cart message did not appear.");
-	}
-
-	@Test(priority = 2)
-	public void addMealToFavouriteTest() throws InterruptedException {
-		locationPopupPage.getCloseButton().click();
-		mealPage.addToFavourite();
-		Assert.assertTrue(notificationSystemPage.getNotificationErrorMessage().contains("Errors"),
-				"[ERROR] Location error message did not appear.");
-
-		loginPage.getLoginButton().click();
-		loginPage.login(super.username, super.password);
-		driver.navigate().to(baseUrl);
-		mealPage.getFirstProduct();
-		mealPage.addToFavourite();
-		Assert.assertTrue(notificationSystemPage.getNotificationMessage().contains("added"),
-				"[ERROR] Added to favourite message did not appear.");
-	}
+//	@Test(priority = 2)
+//	public void addMealToFavouriteTest() throws InterruptedException {
+//		locationPopupPage.getCloseButton().click();
+//		mealPage.addToFavourite();
+//		Assert.assertTrue(notificationSystemPage.getNotificationErrorMessage().contains("Please"),
+//				"[ERROR] Login error message did not appear.");
+//
+//		loginPage.getLoginButton().click();
+//		loginPage.login(super.username, super.password);
+//		driver.navigate().to(baseUrl);
+//		mealPage.getFirstProduct();
+//		mealPage.addToFavourite();
+//		Assert.assertTrue(notificationSystemPage.getNotificationMessage().contains("added"),
+//				"[ERROR] Added to favourite message did not appear.");
+//	}
 
 	@Test(priority = 3)
 	public void clearCartTest() throws InterruptedException, IOException {
-		File file = new File("data/Data.xlsx");
+		File file = new File("./data/Data.xlsx");
 		FileInputStream fis = new FileInputStream(file);
 		XSSFWorkbook wb = new XSSFWorkbook(fis);
-		XSSFSheet sheet = wb.getSheet("Meal Search Results");
+		XSSFSheet sheet = wb.getSheet("Meals");
 		DataFormatter formatter = new DataFormatter();
 
 		driver.navigate().to(baseUrl + "/meals");
 		locationPopupPage.chooseLocation("City Center - Albany");
 
-		for (int i = 1; i < 6; i++) {
-			String url = formatter.formatCellValue(sheet.getRow(i).getCell(1));
-			String quantity = formatter.formatCellValue(sheet.getRow(i).getCell(2));
-
+		for (int i = 1; i < 5; i++) {
+			String url = formatter.formatCellValue(sheet.getRow(1).getCell(0));
 			driver.navigate().to(url);
-			mealPage.addProductToTheCart(quantity);
+			mealPage.addProductToTheCart("i");
 			softAssertion.assertTrue(notificationSystemPage.getNotificationMessage().contains("Added"),
 					"[ERROR] Added to cart message did not appear.");
 		}
+
 		softAssertion.assertAll();
 
 		cartSummaryPage.clearAll();

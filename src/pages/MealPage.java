@@ -45,8 +45,8 @@ public class MealPage extends BasicPage {
 
 	public void addProductToTheCart(String quantity) throws InterruptedException {
 		getQuantityInput().clear();
-		this.getQuantityInput().sendKeys(Keys.chord(Keys.CONTROL, "a"));
-		this.getQuantityInput().sendKeys(quantity);
+		getQuantityInput().sendKeys(Keys.chord(Keys.CONTROL, "a"));
+		getQuantityInput().sendKeys(quantity);
 		getAddToCartButton().click();
 	}
 

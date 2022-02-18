@@ -45,6 +45,8 @@ public class LocationPopupPage extends BasicPage{
 		String value = getLocationItem(locationName).getAttribute("data-value");
 		js.executeScript("arguments[0].value=arguments[1];", getLocationInput(), value);
 		js.executeScript("arguments[0].click();", getSubmit());
+		// sleep is set for clearCartTest
+		Thread.sleep(1000); 
 	}
 	
 }
